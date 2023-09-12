@@ -1,0 +1,406 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+@keyframes circle_to_square {
+  20% {
+    border-radius: 4px;
+    height: 28px;
+    width: 28px;
+  }
+  100% {
+    height: 100%;
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+  }
+}
+
+@keyframes circle_to_square_content {
+  100% {
+    visibility: visible;
+  }
+}
+.github_reviews_content_container {
+  .content {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+  }
+  position: fixed;
+
+  width: 28px;
+  height: 28px;
+  right: 0;
+  top: 70px;
+  padding: 5px;
+  border: 4px solid #004444;
+  background-color: #5b9557;
+
+  color: #333;
+  border-radius: 100%;
+
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  .todo_input {
+    margin-top: 20px;
+    border-radius: 4px;
+    border: none;
+    padding: 15px 15px;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 5px;
+  }
+  &:hover{
+    .content {
+      visibility: visible; // don't use this line when animating
+      //animation: circle_to_square_content 5s forwards;
+    }
+    /**
+    section for animation:
+     */
+    height: 100%;
+    width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    // finish animation here...
+
+    max-height: 70vh;
+    overflow: auto;
+    overflow-x: hidden;
+    //animation: circle_to_square 800ms forwards;
+
+    &::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color: #F5F5F5;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar
+    {
+      width: 10px;
+      background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+      background-color: #AAA;
+      border-radius: 10px;
+    }
+  }
+  header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  h1 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+  h2 {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .todo-list {
+    background: #FFF;
+    font-size: 20px;
+    width: 100%;
+  }
+  .todo {
+    display: block;
+    position: relative;
+    padding: 1em 1em 1em 16%;
+    margin: 0 auto;
+    cursor: pointer;
+    border-bottom: solid 1px #ddd;
+  }
+  .todo:last-child {
+    border-bottom: none;
+  }
+  .todo__state {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  .todo__text {
+    color: #135156;
+    transition: all 0.4s linear 0.4s;
+  }
+  .todo__icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    fill: none;
+    stroke: #27FDC7;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .todo__line,
+  .todo__box,
+  .todo__check {
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.9, 0, 0.5, 1);
+  }
+  .todo__circle {
+    stroke: #27FDC7;
+    stroke-dasharray: 1 6;
+    stroke-width: 0;
+    transform-origin: 13.5px 12.5px;
+    transform: scale(0.4) rotate(0deg);
+    -webkit-animation: none 0.8s linear;
+    animation: none 0.8s linear;
+  }
+  @-webkit-keyframes explode {
+    30% {
+      stroke-width: 3;
+      stroke-opacity: 1;
+      transform: scale(0.8) rotate(40deg);
+    }
+    100% {
+      stroke-width: 0;
+      stroke-opacity: 0;
+      transform: scale(1.1) rotate(60deg);
+    }
+  }
+  @keyframes explode {
+    30% {
+      stroke-width: 3;
+      stroke-opacity: 1;
+      transform: scale(0.8) rotate(40deg);
+    }
+    100% {
+      stroke-width: 0;
+      stroke-opacity: 0;
+      transform: scale(1.1) rotate(60deg);
+    }
+  }
+  .todo__box {
+    stroke-dasharray: 56.1053, 56.1053;
+    stroke-dashoffset: 0;
+    transition-delay: 0.16s;
+  }
+  .todo__check {
+    stroke: #27FDC7;
+    stroke-dasharray: 9.8995, 9.8995;
+    stroke-dashoffset: 9.8995;
+    transition-duration: 0.32s;
+  }
+  .todo__line {
+    stroke-dasharray: 168, 1684;
+    stroke-dashoffset: 168;
+  }
+  .todo__circle {
+    -webkit-animation-delay: 0.56s;
+    animation-delay: 0.56s;
+    -webkit-animation-duration: 0.56s;
+    animation-duration: 0.56s;
+  }
+  .todo__state:checked ~ .todo__text {
+    transition-delay: 0s;
+    color: #5EBEC1;
+    opacity: 0.6;
+  }
+  .todo__state:checked ~ .todo__icon .todo__box {
+    stroke-dashoffset: 56.1053;
+    transition-delay: 0s;
+  }
+  .todo__state:checked ~ .todo__icon .todo__line {
+    stroke-dashoffset: -8;
+  }
+  .todo__state:checked ~ .todo__icon .todo__check {
+    stroke-dashoffset: 0;
+    transition-delay: 0.48s;
+  }
+  .todo__state:checked ~ .todo__icon .todo__circle {
+    -webkit-animation-name: explode;
+    animation-name: explode;
+  }
+}
+.github_reviews_popup {
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  .todo_input {
+    margin-top: 20px;
+    border-radius: 4px;
+    padding: 15px 15px;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 5px;
+  }
+  width: 400px;
+  background: #fff;
+  border-radius: 4px;
+  // finish animation here...
+
+  overflow: auto;
+  overflow-x: hidden;
+  //animation: circle_to_square 800ms forwards;
+
+  &::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    background-color: #AAA;
+    border-radius: 10px;
+  }
+  header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  h1 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+  h2 {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .todo-list {
+    background: #FFF;
+    font-size: 20px;
+    width: 100%;
+  }
+  .todo {
+    display: block;
+    position: relative;
+    padding: 1em 1em 1em 16%;
+    margin: 0 auto;
+    cursor: pointer;
+    border-bottom: solid 1px #ddd;
+  }
+  .todo:last-child {
+    border-bottom: none;
+  }
+  .todo__state {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  .todo__text {
+    color: #135156;
+    transition: all 0.4s linear 0.4s;
+  }
+  .todo__icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    fill: none;
+    stroke: #27FDC7;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .todo__line,
+  .todo__box,
+  .todo__check {
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.9, 0, 0.5, 1);
+  }
+  .todo__circle {
+    stroke: #27FDC7;
+    stroke-dasharray: 1 6;
+    stroke-width: 0;
+    transform-origin: 13.5px 12.5px;
+    transform: scale(0.4) rotate(0deg);
+    -webkit-animation: none 0.8s linear;
+    animation: none 0.8s linear;
+  }
+  @-webkit-keyframes explode {
+    30% {
+      stroke-width: 3;
+      stroke-opacity: 1;
+      transform: scale(0.8) rotate(40deg);
+    }
+    100% {
+      stroke-width: 0;
+      stroke-opacity: 0;
+      transform: scale(1.1) rotate(60deg);
+    }
+  }
+  @keyframes explode {
+    30% {
+      stroke-width: 3;
+      stroke-opacity: 1;
+      transform: scale(0.8) rotate(40deg);
+    }
+    100% {
+      stroke-width: 0;
+      stroke-opacity: 0;
+      transform: scale(1.1) rotate(60deg);
+    }
+  }
+  .todo__box {
+    stroke-dasharray: 56.1053, 56.1053;
+    stroke-dashoffset: 0;
+    transition-delay: 0.16s;
+  }
+  .todo__check {
+    stroke: #27FDC7;
+    stroke-dasharray: 9.8995, 9.8995;
+    stroke-dashoffset: 9.8995;
+    transition-duration: 0.32s;
+  }
+  .todo__line {
+    stroke-dasharray: 168, 1684;
+    stroke-dashoffset: 168;
+  }
+  .todo__circle {
+    -webkit-animation-delay: 0.56s;
+    animation-delay: 0.56s;
+    -webkit-animation-duration: 0.56s;
+    animation-duration: 0.56s;
+  }
+  .todo__state:checked ~ .todo__text {
+    transition-delay: 0s;
+    color: #5EBEC1;
+    opacity: 0.6;
+  }
+  .todo__state:checked ~ .todo__icon .todo__box {
+    stroke-dashoffset: 56.1053;
+    transition-delay: 0s;
+  }
+  .todo__state:checked ~ .todo__icon .todo__line {
+    stroke-dashoffset: -8;
+  }
+  .todo__state:checked ~ .todo__icon .todo__check {
+    stroke-dashoffset: 0;
+    transition-delay: 0.48s;
+  }
+  .todo__state:checked ~ .todo__icon .todo__circle {
+    -webkit-animation-name: explode;
+    animation-name: explode;
+  }
+}
