@@ -47,7 +47,7 @@ class App extends React.Component<IProps, IState> {
     }
 
     render() {
-        const body = `${this.props.total == this.props.completed ? "Approving with the following checks" : "Some checks are missing"}:\n${this.props.checksForThisPR.map(x => `[${x.done ? "x" : " "}] ${x.text}`).join("\n")}`
+        const body = `${this.props.total == this.props.completed ? "Approving with the following checks" : "Some checks are missing"}:\n${this.props.checksForThisPR.map(x => `- [${x.done ? "x" : " "}] ${x.text}`).join("\n")}`
 
         return (
             <>
